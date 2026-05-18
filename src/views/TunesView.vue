@@ -6,7 +6,7 @@
       <input v-model="query" type="text" autofocus placeholder="Čo ideme hľadať?">
     </form>
 
-    <ul>
+    <ul v-if="isPresent">
       <li v-for="song in songs" :key="song.id">
         <div v-if="song.cover">
           <img :src="song.cover" alt="album cover image" />
@@ -34,11 +34,8 @@ export default {
     return {
       query: '',
       limit: 5,
-      songs: [
-        { id: 1, artist: 'Great Artist', name: 'Great Song' },
-        { id: 2, artist: 'Samčo, brat dážďoviek', name: 'Soros mi daroval dlažobnú kocku' },
-        { id: 3, artist: 'IMT Sad', name: 'Preafektovaná' }
-      ]
+      isPresent: false,
+      songs: [{}]
     }
   },
   methods: {
@@ -51,6 +48,7 @@ export default {
       axios.get(`https://itunes.apple.com/search?term=${encodeURIComponent(this.query)}&entity=song&limit=${this.limit}`)
         .then(response => {
           this.songs = []
+          this.isPresent = true;
 
           response.data.results.forEach(song => {
             this.songs.push(this.extractData(song));
