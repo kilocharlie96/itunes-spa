@@ -70,19 +70,16 @@ import axios from 'axios';
 </script>
 
 <style>
-.food-card {
-  margin-top: 3em;
-}
-
-.ean {
-  display: block;
-}
-
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+  .food {
+    text-align: center;
+    padding-top: 3em;
   }
-}
+
+  .food-card {
+    margin-top: 3em;
+  }
+
+  label.ean {
+    display: block;
+  }
 </style>
