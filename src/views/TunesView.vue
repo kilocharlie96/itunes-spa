@@ -1,9 +1,9 @@
 <template>
   <div class="tunes">
-    <h1>iTunes</h1>
+    <h1 class="title">iTunes</h1>
 
     <form action="#" @submit.prevent="getMusic()">
-      <input v-model="query" type="text" autofocus placeholder="Čo ideme hľadať?">
+      <input class="input" v-model="query" type="text" autofocus placeholder="Zadaj názov piesne, alebo interpreta">
     </form>
 
     <ul v-if="isPresent">
@@ -72,7 +72,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .tunes {
     text-align: center;
     padding-top: 2em;

@@ -1,15 +1,26 @@
 <template>
   <div class="food">
     <form @submit.prevent="getFood()" action="#">
-      <label class="ean" for="ean">Zadaj čiarový kód:</label>
-      <input v-model="query" type="text" inputmode="numeric" pattern="[0-9]*" autofocus name="ean"
-        placeholder="EAN kód">
+      <label class="ean title" for="ean">iFoods</label>
+      <input class="input" v-model="query" type="text" inputmode="numeric" pattern="[0-9]*" autofocus name="ean"
+        placeholder="Zadaj čiarový (EAN) kód">
     </form>
+
+
+
+    <div>
+      <h6 class="title is-6 mt-3 mb-1">Skús napríklad:</h6>
+      <ul>
+        <li>3017620422003</li>
+        <li>5449000000439</li>
+        <li>4056489158448</li>
+      </ul>
+</div>
 
     <div class="card" v-if="food.brands">
       <div class="card-image">
-        <figure class="image is-128x128">
-          <img :src="food.image_small_url" alt="food image" />
+        <figure class="image">
+          <img :src="food.image_url" alt="food image" />
         </figure>
       </div>
       <div class="card-content">
@@ -30,7 +41,7 @@
 
           <form v-if="food.brands" @submit.prevent="rate()" action="#">
             <label for="rating">Vaše hodnotenie:</label>
-            <input v-model="rating" type="number" min="0" max="5" name="rating">
+            <input class="input" v-model="rating" type="number" min="0" max="5" name="rating">
           </form>
         </div>
       </div>
@@ -46,7 +57,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      query: '4056489158448',
+      query: '',
       rating: 0,
       food: {}
     }
@@ -74,7 +85,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .food {
     text-align: center;
     padding-top: 3em;
@@ -87,10 +98,6 @@ export default {
   .card {
     margin: 3em auto 0 auto;
     max-width: 25rem;
-  }
-
-  .card-image {
-    padding: 2em;
   }
 
   .image {
