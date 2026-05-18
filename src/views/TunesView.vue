@@ -3,7 +3,7 @@
     <h1>iTunes</h1>
 
     <form action="#" @submit.prevent="getMusic()">
-      <input v-model="query" type="text">
+      <input v-model="query" type="text" autofocus>
     </form>
 
     <ul>
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -31,7 +33,17 @@ export default {
       return song.artist + ' - ' + song.name;
     },
     getMusic() {
-      console.log(this.query)
+      console.log(this.query);
+
+      axios.get(`https://itunes.apple.com/search?term=${encodeURIComponent(this.query)}&entity=song&limit=15`)
+        .then(response => {
+          response.data.results.forEach(song => {
+            console.log(song);
+          });
+        })
+        .catch(error => {
+          console.error("Chyba pri načítaní dát:", error);
+        });
     }
   },
 }
