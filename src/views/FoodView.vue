@@ -26,6 +26,7 @@
       <div class="card-content">
         <div class="media">
           <div class="media-content">
+            //TODO: zobraziť množstvo
             <p class="title is-4">{{ food.product_name }}</p>
             <p class="subtitle is-6">{{ food.brands }}</p>
           </div>
