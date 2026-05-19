@@ -26,9 +26,9 @@
       <div class="card-content">
         <div class="media">
           <div class="media-content">
-            //TODO: zobraziť množstvo
             <p class="title is-4">{{ food.product_name }}</p>
             <p class="subtitle is-6">{{ food.brands }}</p>
+            <p class="subtitle is-6 p-1">{{ quantity }}</p>
           </div>
         </div>
 
@@ -36,6 +36,15 @@
           <p>
             Celkové hodnotenie: {{ food.avgRating }}
           </p>
+
+          <div>
+            <StarIcon :class="{ filled: food.avgRating >= 1 }"/>
+            <StarIcon :class="{ filled: food.avgRating >= 2 }"/>
+            <StarIcon :class="{ filled: food.avgRating >= 3 }"/>
+            <StarIcon :class="{ filled: food.avgRating >= 4 }"/>
+            <StarIcon :class="{ filled: food.avgRating >= 5 }"/>
+          </div>
+
           <p>
             <small>Počet hodnotení: {{ food.numOfRatings }}</small>
           </p>
@@ -52,15 +61,18 @@
 
 <script>
 import axios from 'axios';
-
-// celkovo / pocet = hodnotenie
+import StarIcon from '../components/icons/IconStar.vue'
 
 export default {
+  components: {
+    StarIcon
+  },
   data() {
     return {
       query: '',
       rating: 0,
-      food: {}
+      food: {},
+      quantity: ''
     }
   },
   methods: {
@@ -69,6 +81,10 @@ export default {
         .then(response => {
           console.log(response.data.product);
           this.food = response.data.product;
+          console.log(this.food.quantity_imported);
+          console.log(this.food.product_quantity);
+          console.log(this.food.product_quantity_unit);
+          this.quantity = this.food.quantity_imported || (this.food.product_quantity + ' ' + this.food.product_quantity_unit);
           this.food.totalRating = 0;
           this.food.avgRating = 0;
           this.food.numOfRatings = 0;
@@ -80,7 +96,8 @@ export default {
     rate() {
       this.food.totalRating += this.rating;
       this.food.numOfRatings++;
-      this.food.avgRating = (this.food.totalRating / this.food.numOfRatings).toFixed(1);
+      this.food.avgRating = (this.food.totalRating / this.food.numOfRatings).toFixed(0);
+
     },
   },
 }
@@ -103,5 +120,9 @@ export default {
 
   .image {
     margin: 0 auto;
+  }
+
+  .filled {
+    fill: #f5c542;
   }
 </style>
