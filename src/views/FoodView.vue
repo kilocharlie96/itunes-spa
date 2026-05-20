@@ -15,8 +15,8 @@
       </ul>
     </div>
 
-    <div class="card mb-6" v-if="food.brands">
-      <div class="card-image has-background-white is-clipped">
+    <div class="card is-clipped mb-6" v-if="food.brands">
+      <div class="card-image has-background-white">
         <figure class="image">
           <img :src="food.image_url" class="is-radiusless" alt="food image" />
         </figure>
