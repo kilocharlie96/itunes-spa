@@ -2,11 +2,9 @@
   <div class="food">
     <form class="ean" @submit.prevent="getFood()" action="#">
       <label class="title" for="ean">iFoods</label>
-      <input class="input" v-model="query" type="text" inputmode="numeric" pattern="[0-9]*" autofocus name="ean"
+      <input class="input has-text-centered" v-model="query" type="text" inputmode="numeric" pattern="[0-9]*" autofocus name="ean"
         placeholder="Zadaj čiarový (EAN) kód">
     </form>
-
-
 
     <div>
       <h6 class="title is-6 mt-3 mb-1">Skús napríklad:</h6>
@@ -51,7 +49,12 @@
 
           <form class="rating" v-if="food.brands" @submit.prevent="rate()" action="#">
             <label for="rating">Vaše hodnotenie:</label>
-            <input class="input" v-model="rating" type="number" min="0" max="5" name="rating">
+
+            <button class="button is-danger p-0 rating-button" :disabled="rating === 0" @click.prevent="rating--">-</button>
+            <input class="input has-text-centered" v-model="rating" type="number" min="0" max="5" name="rating">
+            <button class="button is-success p-0 rating-button" :disabled="rating === 5" @click.prevent="rating++">+</button>
+
+            <button class="button is-success" @submit.prevent="rate()">Odoslať</button>
           </form>
         </div>
       </div>
@@ -104,6 +107,16 @@ export default {
 </script>
 
 <style scoped>
+  input[type=number] {
+    appearance: textfield;
+  }
+
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
   .food {
     text-align: center;
     padding-top: 3em;
@@ -127,9 +140,15 @@ export default {
     fill: #f5c542;
   }
 
+  button.rating-button {
+    height: 1.5em;
+    width: 1.5em;
+  }
+
   .rating {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
   }
 
   .rating label {
@@ -137,9 +156,9 @@ export default {
   }
 
   .ean input {
-    width: 10em;
+    width: 12em;
   }
   .rating input {
-    width: 5em;
+    width: 3em;
   }
 </style>
