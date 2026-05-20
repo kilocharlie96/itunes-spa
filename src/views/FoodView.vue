@@ -1,7 +1,7 @@
 <template>
   <div class="food">
-    <form @submit.prevent="getFood()" action="#">
-      <label class="ean title" for="ean">iFoods</label>
+    <form class="ean" @submit.prevent="getFood()" action="#">
+      <label class="title" for="ean">iFoods</label>
       <input class="input" v-model="query" type="text" inputmode="numeric" pattern="[0-9]*" autofocus name="ean"
         placeholder="Zadaj čiarový (EAN) kód">
     </form>
@@ -49,7 +49,7 @@
             <small>Počet hodnotení: {{ food.numOfRatings }}</small>
           </p>
 
-          <form v-if="food.brands" @submit.prevent="rate()" action="#">
+          <form class="rating" v-if="food.brands" @submit.prevent="rate()" action="#">
             <label for="rating">Vaše hodnotenie:</label>
             <input class="input" v-model="rating" type="number" min="0" max="5" name="rating">
           </form>
@@ -109,7 +109,7 @@ export default {
     padding-top: 3em;
   }
 
-  label.ean {
+  .ean label.title {
     display: block;
   }
 
@@ -125,5 +125,21 @@ export default {
 
   .filled {
     fill: #f5c542;
+  }
+
+  .rating {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .rating label {
+    margin: auto 0;
+  }
+
+  .ean input {
+    width: 10em;
+  }
+  .rating input {
+    width: 5em;
   }
 </style>
