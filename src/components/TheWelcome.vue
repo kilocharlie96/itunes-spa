@@ -22,3 +22,9 @@ import MusicIcon from './icons/IconMusic.vue'
     Nájdi svoju obľúbenú potravinu a zanechaj jej hodnotenie pre ostatných.
   </WelcomeItem>
 </template>
+
+<style scoped>
+  svg {
+    width: 80%;
+  }
+</style>
