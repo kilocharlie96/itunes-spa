@@ -120,6 +120,7 @@ export default {
 
   .image {
     margin: 0 auto;
+    width: 65%;
   }
 
   .filled {
