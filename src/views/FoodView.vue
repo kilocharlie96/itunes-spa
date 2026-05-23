@@ -240,7 +240,7 @@ button.rating-button {
 }
 
 .ean input {
-  width: 12em;
+  width: 13rem;
 }
 
 .rating input {
