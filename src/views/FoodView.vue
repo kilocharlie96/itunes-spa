@@ -1,39 +1,6 @@
 <template>
   <div class="food">
-    <form class="ean" @submit.prevent="getFood()" action="#">
-      <label class="title" for="ean">iFoods</label>
-      <input
-        class="input has-text-centered"
-        v-model="query"
-        type="text"
-        inputmode="numeric"
-        pattern="[0-9]*"
-        autofocus
-        name="ean"
-        placeholder="Zadaj čiarový (EAN) kód"
-      />
-      <button class="button is-success" @submit.prevent="getFood()">
-        <svg
-          viewBox="0 0 24 24"
-          height="25"
-          width="25"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-          <g id="SVGRepo_iconCarrier">
-            <path
-              d="M4 12.6111L8.92308 17.5L20 6.5"
-              stroke="#fff"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
-          </g>
-        </svg>
-      </button>
-    </form>
+    <FormSearchBarcode/>
 
     <div>
       <h6 class="title is-6 mt-3 mb-1">Skús napríklad:</h6>
@@ -103,27 +70,7 @@
               </button>
             </div>
 
-            <button class="button is-success m-5 mb-4" @submit.prevent="rate()" :disabled="isRated">
-              <svg
-                viewBox="0 0 24 24"
-                height="25"
-                width="25"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                <g id="SVGRepo_iconCarrier">
-                  <path
-                    d="M4 12.6111L8.92308 17.5L20 6.5"
-                    stroke="#fff"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></path>
-                </g>
-              </svg>
-            </button>
+            <ButtonSubmit class="m-5 mb-4" @submit.prevent="rate()" :disabled="isRated"/>
           </form>
         </div>
       </div>
@@ -132,43 +79,26 @@
 </template>
 
 <script>
-import axios from 'axios'
 import StarIcon from '../components/icons/IconStar.vue'
+import ButtonSubmit from '@/components/buttons/ButtonSubmit.vue';
+import FormSearchBarcode from '@/components/forms/FormSearchBarcode.vue';
 
 export default {
   components: {
     StarIcon,
+    ButtonSubmit,
+    FormSearchBarcode
   },
   data() {
     return {
-      query: '',
-      rating: 0,
       food: {},
+      rating: 0,
       quantity: '',
       isRated: false,
     }
   },
   methods: {
-    getFood() {
-      axios
-        .get(`https://sk.openfoodfacts.org/api/v2/product/${this.query}`)
-        .then((response) => {
-          console.log(response.data.product)
-          this.food = response.data.product
-          console.log(this.food.quantity_imported)
-          console.log(this.food.product_quantity)
-          console.log(this.food.product_quantity_unit)
-          this.quantity =
-            this.food.quantity_imported ||
-            this.food.product_quantity + ' ' + this.food.product_quantity_unit
-          this.food.totalRating = 0
-          this.food.avgRating = 0
-          this.food.numOfRatings = 0
-        })
-        .catch((error) => {
-          console.error('Chyba pri načítaní dát:', error)
-        })
-    },
+    
     rate() {
       if (this.isRated) return
 
@@ -183,7 +113,7 @@ export default {
 </script>
 
 <style scoped>
-input[type='number'] {
+/* input[type='number'] {
   appearance: textfield;
 }
 
@@ -191,15 +121,11 @@ input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
   appearance: none;
   margin: 0;
-}
+} */
 
 .food {
   text-align: center;
   padding-top: 3em;
-}
-
-.ean label.title {
-  display: block;
 }
 
 .card {
@@ -237,10 +163,6 @@ button.rating-button {
 
 .rating label {
   margin: auto 0;
-}
-
-.ean input {
-  width: 13rem;
 }
 
 .rating input {
