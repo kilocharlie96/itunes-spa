@@ -79,9 +79,9 @@
 </template>
 
 <script>
-import StarIcon from '../components/icons/IconStar.vue'
+import StarIcon from '../components/base/icons/IconStar.vue'
 import ButtonSubmit from '@/components/buttons/ButtonSubmit.vue';
-import FormSearchBarcode from '@/components/forms/FormSearchBarcode.vue';
+import FormSearchBarcode from '@/components/tunes/forms/FormSearchBarcode.vue';
 
 export default {
   components: {
