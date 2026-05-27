@@ -1,7 +1,7 @@
 <script setup>
 import WelcomeItem from './WelcomeItem.vue'
-import BurgerIcon from './icons/IconBurger.vue'
-import MusicIcon from './icons/IconMusic.vue'
+import BurgerIcon from '../base/icons/IconBurger.vue'
+import MusicIcon from '../base/icons/IconMusic.vue'
 
 </script>
 
