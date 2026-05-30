@@ -2,15 +2,14 @@
   <div class="tunes">
     <h1 class="title">iTunes</h1>
 
-    <TunesFormSearch @add-new-song="songs.push($event)" />
+    <TunesFormSearch @add-new-songs="songs = $event" />
     <TunesList :new-songs="songs" />
-
   </div>
 </template>
 
 <script>
-import TunesFormSearch from '@/components/tunes/TunesFormSearch.vue';
-import TunesList from '@/components/tunes/TunesList.vue';
+import TunesFormSearch from '@/components/tunes/TunesFormSearch.vue'
+import TunesList from '@/components/tunes/TunesList.vue'
 
 export default {
   components: {
@@ -19,7 +18,7 @@ export default {
   },
   data() {
     return {
-      songs: []
+      songs: [],
     }
   },
 }
