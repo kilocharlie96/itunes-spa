@@ -1,8 +1,16 @@
 <template>
   <form class="ean" @submit.prevent="getFood()" action="#">
     <label class="title" for="ean">iFoods</label>
-    <input class="input has-text-centered" v-model="query" type="text" inputmode="numeric" pattern="[0-9]*" autofocus
-      name="ean" placeholder="Zadaj čiarový (EAN) kód" />
+    <input
+      class="input has-text-centered"
+      v-model="query"
+      type="text"
+      inputmode="numeric"
+      pattern="[0-9]*"
+      autofocus
+      name="ean"
+      placeholder="Zadaj čiarový (EAN) kód"
+    />
 
     <ButtonSubmit @submit.prevent="getFood()" />
   </form>
@@ -10,17 +18,16 @@
 
 <script>
 import axios from 'axios'
-import ButtonSubmit from '@/components/buttons/ButtonSubmit.vue';
-
+import ButtonSubmit from '@/components/base/buttons/ButtonSubmit.vue'
 
 export default {
   components: {
-    ButtonSubmit
+    ButtonSubmit,
   },
-    data() {
+  data() {
     return {
       query: '',
-      food: {}
+      food: {},
     }
   },
   methods: {
@@ -42,17 +49,17 @@ export default {
           console.error('Chyba pri načítaní dát:', error)
           //TODO
         })
-    }
+    },
   },
 }
 </script>
 
 <style scoped>
-  .ean label.title {
-    display: block;
-  }
+.ean label.title {
+  display: block;
+}
 
-  .ean input {
+.ean input {
   width: 13rem;
 }
 </style>

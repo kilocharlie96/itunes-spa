@@ -1,19 +1,24 @@
 <template>
-  <form action="#" @submit.prevent="getMusic()">
+  <form @submit.prevent="getMusic()">
     <input
-      class="input"
+      class="input has-text-centered"
       v-model="query"
       type="text"
       autofocus
-      placeholder="Zadaj názov piesne, alebo interpreta"
+      placeholder="Názov piesne, interpreta, albumu ..."
     />
+    <ButtonSubmit @submit.prevent="getMusic()" />
   </form>
 </template>
 
 <script>
 import axios from 'axios'
+import ButtonSubmit from '@/components/base/buttons/ButtonSubmit.vue'
 
 export default {
+  components: {
+    ButtonSubmit,
+  },
   data() {
     return {
       query: '',
@@ -60,3 +65,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+input {
+  width: 17rem;
+}
+</style>

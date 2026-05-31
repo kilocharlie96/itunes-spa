@@ -1,6 +1,6 @@
 <template>
   <div class="food">
-    <FormSearchBarcode/>
+    <FormSearchBarcode />
 
     <div>
       <h6 class="title is-6 mt-3 mb-1">Skús napríklad:</h6>
@@ -70,7 +70,7 @@
               </button>
             </div>
 
-            <ButtonSubmit class="m-5 mb-4" @submit.prevent="rate()" :disabled="isRated"/>
+            <ButtonSubmit class="m-5 mb-4" @submit.prevent="rate()" :disabled="isRated" />
           </form>
         </div>
       </div>
@@ -79,15 +79,15 @@
 </template>
 
 <script>
-import StarIcon from '../components/base/icons/IconStar.vue'
-import ButtonSubmit from '@/components/buttons/ButtonSubmit.vue';
-import FormSearchBarcode from '@/components/tunes/forms/FormSearchBarcode.vue';
+import StarIcon from '@/components/base/icons/IconStar.vue'
+import ButtonSubmit from '@/components/base/buttons/ButtonSubmit.vue'
+import FormSearchBarcode from '@/components/food/FormSearchBarcode.vue'
 
 export default {
   components: {
     StarIcon,
     ButtonSubmit,
-    FormSearchBarcode
+    FormSearchBarcode,
   },
   data() {
     return {
@@ -98,7 +98,6 @@ export default {
     }
   },
   methods: {
-    
     rate() {
       if (this.isRated) return
 

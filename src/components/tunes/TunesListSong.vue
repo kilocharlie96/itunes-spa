@@ -12,7 +12,6 @@
       <figcaption>{{ song.album }}</figcaption>
       <audio controls :src="song.audioFile"></audio>
     </figure>
-
   </li>
 </template>
 
@@ -20,18 +19,18 @@
 export default {
   props: {
     song: {
-      type: Object
+      type: Object,
     },
   },
   methods: {
     songify(song) {
-      return song.artist + ' - ' + song.name;
+      return song.artist + ' - ' + song.name
     },
   },
 }
 </script>
 
-<style>
+<style scoped>
 li {
   margin-top: 2em;
   padding-top: 2em;
