@@ -7,9 +7,9 @@
       type="text"
       inputmode="numeric"
       pattern="[0-9]*"
-      autofocus
       name="ean"
       placeholder="Zadaj čiarový (EAN) kód"
+      ref="searchInput"
     />
 
     <ButtonSubmit @submit.prevent="getFood()" />
@@ -50,6 +50,9 @@ export default {
           //TODO
         })
     },
+  },
+  mounted() {
+    this.$refs.searchInput.focus()
   },
 }
 </script>

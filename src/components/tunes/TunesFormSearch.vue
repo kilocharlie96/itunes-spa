@@ -4,8 +4,8 @@
       class="input has-text-centered"
       v-model="query"
       type="text"
-      autofocus
       placeholder="Názov piesne, interpreta, albumu ..."
+      ref="searchInput"
     />
     <ButtonSubmit @submit.prevent="getMusic()" />
   </form>
@@ -62,6 +62,9 @@ export default {
     }) {
       return { id, artist, audioFile, cover, name, album }
     },
+  },
+  mounted() {
+    this.$refs.searchInput.focus()
   },
 }
 </script>

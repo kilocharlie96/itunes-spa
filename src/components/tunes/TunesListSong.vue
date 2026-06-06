@@ -5,7 +5,7 @@
     </div>
 
     <p>
-      <strong>{{ songify(song) }}</strong>
+      <strong>{{ songFullName }}</strong>
     </p>
 
     <figure v-if="song.audioFile">
@@ -22,9 +22,9 @@ export default {
       type: Object,
     },
   },
-  methods: {
-    songify(song) {
-      return song.artist + ' - ' + song.name
+  computed: {
+    songFullName() {
+      return this.song.artist + ' - ' + this.song.name
     },
   },
 }
