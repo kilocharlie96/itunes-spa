@@ -2,7 +2,7 @@
   <div class="tunes">
     <h1 class="title">iTunes</h1>
 
-    <TunesFormSearch @add-new-songs="songs = $event" />
+    <TunesFormSearch @add-new-songs="songs = $event" :preset-limit="limit" />
     <TunesList :new-songs="songs" />
   </div>
 </template>
@@ -19,6 +19,7 @@ export default {
   data() {
     return {
       songs: [],
+      limit: 5,
     }
   },
 }

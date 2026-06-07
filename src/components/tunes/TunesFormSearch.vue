@@ -22,15 +22,12 @@ export default {
   data() {
     return {
       query: '',
-      limit: 5,
     }
   },
   methods: {
     getMusic() {
       axios
-        .get(
-          `https://itunes.apple.com/search?term=${encodeURIComponent(this.query)}&entity=song&limit=${this.limit}`,
-        )
+        .get(`https://itunes.apple.com/search?term=${encodeURIComponent(this.query)}&entity=song`)
         .then((response) => {
           let iTunesSongs = response.data.results
             .filter((song) => song.kind === 'song')
@@ -41,16 +38,6 @@ export default {
         .catch((error) => {
           console.error('Chyba pri načítaní dát:', error)
         })
-
-      // axios.get(`https://itunes.apple.com/search?term=${encodeURIComponent(this.query)}&entity=song&limit=${this.limit}`)
-      //     .then(response => {
-      //         response.data.results.forEach(song => {
-      //             this.$emit('add-new-song', this.extractData(song))
-      //         });
-      //     })
-      //     .catch(error => {
-      //         console.error("Chyba pri načítaní dát:", error);
-      //     });
     },
     extractData({
       trackId: id,
